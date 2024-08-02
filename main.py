@@ -1,8 +1,12 @@
-from cnnClassifier import logger
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+from cnnClassifier.logger import logger
 from cnnClassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from cnnClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from cnnClassifier.pipeline.stage_03_model_training import ModelTrainingPipeline
-from cnnClassifier.pipeline.stage_04_model_evaluation import EvaluationPipeline
+#from cnnClassifier.pipeline.stage_04_model_evaluation import EvaluationPipeline
 
 
 
