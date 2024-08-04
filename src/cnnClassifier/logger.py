@@ -1,23 +1,22 @@
-import logging
 import os
-from datetime import datetime
+import sys
+import logging
 
-# Create logs directory if it doesn't exist
-logs_dir = "logs"
-os.makedirs(logs_dir, exist_ok=True)
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s: %(message)s]"
 
-# Create a unique log file name based on current time
-log_file_name = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + '.log'
-log_file_path = os.path.join(logs_dir, log_file_name)
+log_dir = "logs"
+log_filepath = os.path.join(log_dir,"running_logs.log")
+os.makedirs(log_dir, exist_ok=True)
 
-# Configure the logger
+
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
+    level= logging.INFO,
+    format= logging_str,
+
     handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
+        logging.FileHandler(log_filepath),
+        logging.StreamHandler(sys.stdout)
     ]
 )
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("cnnClassifierLogger")

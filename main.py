@@ -1,25 +1,24 @@
 import sys
 import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
-from cnnClassifier.logger import logger
+from cnnClassifier import logger
 from cnnClassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from cnnClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from cnnClassifier.pipeline.stage_03_model_training import ModelTrainingPipeline
-#from cnnClassifier.pipeline.stage_04_model_evaluation import EvaluationPipeline
+from cnnClassifier.pipeline.stage_04_model_evaluation import EvaluationPipeline
 
+logger.info("CONFIG_FILE_PATH: D:\End to end machine learning projects\Kidney Disease classification predication\Kidney-Disease-Classification-Deep-Learning-Project\config\config.yaml")
+logger.info("PARAMS_FILE_PATH: D:\End to end machine learning projects\Kidney Disease classification predication\Kidney-Disease-Classification-Deep-Learning-Project\params.yaml")
 
-
-
-STAGE_NAME = "Data Ingestion stage"
 try:
-   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
-   data_ingestion = DataIngestionTrainingPipeline()
-   data_ingestion.main()
-   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    logger.info(">>>>> stage Data Ingestion stage started <<<<<<")
+    # Create an instance of DataIngestionTrainingPipeline
+    data_ingestion_pipeline = DataIngestionTrainingPipeline()
+    # Call the main method on the instance
+    data_ingestion_pipeline.main()
 except Exception as e:
-        logger.exception(e)
-        raise e
+    logger.error(e)
+    raise e
+
 
 
 
